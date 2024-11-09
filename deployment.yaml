@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-recognition-app-deployment
+  
+spec:
+  replicas: 2  # Puedes ajustar el número de réplicas según tus necesidades
+  selector:
+    matchLabels:
+      app: image-recognition-app
+  template:
+    metadata:
+      labels:
+        app: image-recognition-app
+    spec:
+      containers:
+      - name: image-recognition-container
+        image: briamjf/image-recognition-app:latest # Reemplaza <tu-registro> con el registro de tu contenedor
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
